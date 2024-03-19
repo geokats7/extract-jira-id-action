@@ -1,0 +1,38 @@
+name: 'Extract Jira Ticket ID'
+description: 'Extracts Jira Ticket ID from PR title, branch name, or commit messages'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+inputs:
+  # Define your action's inputs here
+outputs:
+  # Define your action's outputs here
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        jira_ticket_id=""
+        # Check PR title
+        if [[ ${{ github.event_name }} == 'pull_request' ]]; then
+          jira_ticket_id=$(echo "${{ github.event.pull_request.title }}" | grep -oE '[A-Z]+-[0-9]+')
+        fi
+
+        # Check branch name
+        if [[ -z $jira_ticket_id ]]; then
+          jira_ticket_id=$(echo "${{ github.ref }}" | grep -oE '[A-Z]+-[0-9]+')
+        fi
+
+        # Check commit messages
+        if [[ -z $jira_ticket_id ]]; then
+          jira_ticket_id=$(git log --format=%B -n 1 | grep -oE '[A-Z]+-[0-9]+')
+        fi
+
+        if [[ -z $jira_ticket_id ]]; then
+          echo "No Jira Ticket ID found"
+        else
+          echo "Jira Ticket ID: $jira_ticket_id"
+          echo "::set-env name=JIRA_TICKET_ID::$jira_ticket_id"
+          echo "::set-output name=jira_ticket_id::$jira_ticket_id"
+
+        fi
+      shell: bash
