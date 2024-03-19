@@ -3,9 +3,9 @@ description: 'Extracts Jira Ticket ID from PR title, branch name, or commit mess
 branding:
   icon: 'check-circle'
   color: 'green'
-inputs: {}
 outputs:
-  jira_ticket_id: {}
+  jira_ticket_id:
+    description: 'The extracted Jira Ticket ID'
 runs:
   using: 'composite'
   steps:
@@ -33,3 +33,4 @@ runs:
           echo "::set-env name=JIRA_TICKET_ID::$jira_ticket_id"
           echo "::set-output name=jira_ticket_id::$jira_ticket_id"
         fi
+      shell: bash
