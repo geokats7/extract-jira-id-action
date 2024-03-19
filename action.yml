@@ -10,6 +10,8 @@ runs:
   using: 'composite'
   steps:
     - run: |
+        #!/bin/bash
+        set -x
         jira_ticket_id=""
         # Check PR title
         if [[ ${{ github.event_name }} == 'pull_request' ]]; then
