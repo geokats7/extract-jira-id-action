@@ -21,10 +21,10 @@ runs:
           jira_ticket_id=$(echo "${{ github.ref }}" | grep -oE '[A-Z]+-[0-9]+')
         fi
 
-        # Check commit messages
-        if [[ -z $jira_ticket_id ]]; then
-          jira_ticket_id=$(git log --format=%B -n 1 | grep -oE '[A-Z]+-[0-9]+')
-        fi
+        # # Check commit messages
+        # if [[ -z $jira_ticket_id ]]; then
+        #   jira_ticket_id=$(git log --format=%B -n 1 | grep -oE '[A-Z]+-[0-9]+')
+        # fi
 
         if [[ -z $jira_ticket_id ]]; then
           echo "No Jira Ticket ID found"
