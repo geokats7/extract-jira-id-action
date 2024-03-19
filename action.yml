@@ -20,7 +20,9 @@ runs:
 
         # Check branch name
         if [[ -z $jira_ticket_id ]]; then
+          echo "Jira ticket: $jira_ticket_id"
           jira_ticket_id=$(echo "${{ github.ref }}" | grep -oE '[A-Z]+-[0-9]+')
+          echo "We are here! $jira_ticket_id"
         fi
 
         echo "Second step passed"
