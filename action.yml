@@ -6,9 +6,11 @@ branding:
 outputs:
   jira_ticket_id:
     description: 'The extracted Jira Ticket ID'
+    value: ${{ steps.extract_jira_ticket_id.outputs.jira_ticket_id }}
 runs:
   using: 'composite'
   steps:
+      id: extract_jira_ticket_id
     - run: |
         set +e
         set +o pipefail
@@ -32,6 +34,6 @@ runs:
           echo "No Jira Ticket ID found"
         else
           echo "Jira Ticket ID: $jira_ticket_id"
-          echo "jira_ticket_id=$jira_ticket_id" >> "$GITHUB_OUTPUT"
+          echo "::set-output name=jira_ticket_id::$jira_ticket_id"
         fi
       shell: bash
