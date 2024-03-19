@@ -11,8 +11,6 @@ runs:
   steps:
     - run: |
         #!/bin/bash
-        set -x
-        jira_ticket_id=""
         # Check PR title
         if [[ ${{ github.event_name }} == 'pull_request' ]]; then
           jira_ticket_id=$(echo "${{ github.event.pull_request.title }}" | grep -oE '[A-Z]+-[0-9]+')
