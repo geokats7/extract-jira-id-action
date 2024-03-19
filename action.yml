@@ -30,6 +30,6 @@ runs:
           echo "No Jira Ticket ID found"
         else
           echo "Jira Ticket ID: $jira_ticket_id"
-          echo "::set-output name=jira_ticket_id::$jira_ticket_id"
+          echo "jira_ticket_id=$jira_ticket_id" >> "$GITHUB_OUTPUT"
         fi
       shell: bash
