@@ -10,7 +10,7 @@ runs:
   using: 'composite'
   steps:
     - run: |
-        #!/bin/bash
+        jira_ticket_id=""
         # Check PR title
         if [[ ${{ github.event_name }} == 'pull_request' ]]; then
           jira_ticket_id=$(echo "${{ github.event.pull_request.title }}" | grep -oE '[A-Z]+-[0-9]+')
@@ -33,4 +33,3 @@ runs:
           echo "::set-env name=JIRA_TICKET_ID::$jira_ticket_id"
           echo "::set-output name=jira_ticket_id::$jira_ticket_id"
         fi
-      shell: bash
