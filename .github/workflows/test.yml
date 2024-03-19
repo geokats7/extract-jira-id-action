@@ -1,0 +1,13 @@
+name: Test Extract Jira ID Action
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Extract Jira ID
+      id: extract_id
+      uses: ./ # Use the action in the current repository
+    - name: Print Jira ID
+      run: echo "Jira Ticket ID is ${{ steps.extract_id.outputs.jira_ticket_id }}"
