@@ -28,7 +28,7 @@ runs:
 
         # Check commit messages
         if [[ -z $jira_ticket_id ]]; then
-          last_commit_message=$(git log --format=%B -n 1)
+          last_commit_message=${{ github.event.head_commit.message }}
           echo "Last commit message: $last_commit_message"
           jira_ticket_id=$(echo "$last_commit_message" | grep -oE '[A-Z]+-[0-9]+')
         fi
