@@ -3,9 +3,11 @@ description: 'Extracts Jira Ticket ID from PR title, branch name, or commit mess
 branding:
   icon: 'check-circle'
   color: 'green'
+inputs: {}
 outputs:
   jira_ticket_id:
     description: 'The extracted Jira Ticket ID'
+    value: ${{ steps.extract_jira_ticket_id.outputs.jira_ticket_id }}
 runs:
   using: 'composite'
   steps:
