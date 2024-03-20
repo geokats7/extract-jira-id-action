@@ -28,7 +28,8 @@ runs:
 
         # Check commit messages
         if [[ -z $jira_ticket_id ]]; then
-          jira_ticket_id=$(echo "${{ github.event.pull_request.head.commit.message }}" | grep -oE '[A-Z]+-[0-9]+')
+          last_commit_message=$(git log --format=%B -n 1)
+          jira_ticket_id=$(echo "$last_commit_message" | grep -oE '[A-Z]+-[0-9]+')
         fi
 
         if [[ -z $jira_ticket_id ]]; then
