@@ -58,6 +58,3 @@ jobs:
     steps:
     - name: Use Jira ID
       run: echo "Jira Ticket ID is ${{ needs.extract.outputs.jira_ticket_id }}"
-
-
-TEST!!
