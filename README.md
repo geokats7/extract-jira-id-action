@@ -50,14 +50,14 @@ jobs:
       id: extract_id
       uses: geokats7/extract-jira-id-action@v1
     outputs:
-      ticket_id: ${{ steps.extract_id.outputs.ticket_id }}
+      jira_ticket_id: ${{ steps.extract_id.outputs.jira_ticket_id }}
 
   use:
     needs: extract
     runs-on: ubuntu-latest
     steps:
     - name: Use Jira ID
-      run: echo "Jira Ticket ID is ${{ needs.extract.outputs.ticket_id }}"
+      run: echo "Jira Ticket ID is ${{ needs.extract.outputs.jira_ticket_id }}"
 
 
 TEST!!
