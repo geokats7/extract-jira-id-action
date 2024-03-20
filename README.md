@@ -4,7 +4,11 @@ This GitHub Action extracts a Jira Ticket ID either from the PR title or the bra
 
 ## Ticket ID Format
 Make sure to prefix the PR title or the branch with the following format: `[A-Z]-[0-9]`  (capital letters, dash, numbers)  
-Example: `PRJ-123`
+Examples:  
+`PRJ-123/my-feature-branch`  
+`[PRJ-123] This is the PR title`
+
+_anything before or after the correct format is valid_
 
 ## Inputs
 
