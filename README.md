@@ -1,6 +1,10 @@
 # Extract Jira Ticket ID Action
 
-This GitHub Action extracts a Jira Ticket ID from a PR title, branch name, or commit messages. It's useful for automating workflows that require a Jira Ticket ID.
+This GitHub Action extracts a Jira Ticket ID either from the PR title or the branch name. It's useful for automating workflows that require a Jira Ticket ID.
+
+## Ticket ID Format
+Make sure to prefix the PR title or the branch with the following format: `[A-Z]-[0-9]`  (capital letters, dash, numbers)  
+Example: `PRJ-123`
 
 ## Inputs
 
@@ -8,9 +12,8 @@ This action currently does not require any inputs.
 
 ## Outputs
 
-`jira_ticket_id`: The extracted Jira Ticket ID. This output can be accessed using `steps.<step_id>.outputs.jira_ticket_id`, where `<step_id>` is the ID of the step that ran this action.
-
-This action also sets an environment variable `JIRA_TICKET_ID` with the extracted Jira Ticket ID.
+`jira_ticket_id`: The extracted Jira Ticket ID.  
+This output can be accessed using `steps.<step_id>.outputs.jira_ticket_id`, where `<step_id>` is the ID of the step that ran this action.
 
 ## Usage
 
