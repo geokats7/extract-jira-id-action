@@ -30,7 +30,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Extract Jira ID
       id: extract_id
-      uses: your-github-username/extract-jira-id-action@v1
+      uses: geokats7/extract-jira-id-action@v1
     - name: Use Jira ID
       run: echo "Jira Ticket ID is ${{ steps.extract_id.outputs.jira_ticket_id }}"
 ```
@@ -48,7 +48,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Extract Jira ID
       id: extract_id
-      uses: your-github-username/extract-jira-id-action@v1
+      uses: geokats7/extract-jira-id-action@v1
     outputs:
       ticket_id: ${{ steps.extract_id.outputs.ticket_id }}
 
