@@ -23,7 +23,7 @@ runs:
 
         # Check branch name
         if [[ -z $jira_ticket_id ]]; then
-          jira_ticket_id=$(echo "${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" | grep -oE '[A-Z]+-[0-9]+')
+          jira_ticket_id=$(echo ${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}} | grep -oE '[A-Z]+-[0-9]+')
         fi
 
         if [[ -z $jira_ticket_id ]]; then
