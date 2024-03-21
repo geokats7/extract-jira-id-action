@@ -12,26 +12,29 @@ runs:
   steps:
     - name: Extract Jira Ticket ID
       id: extract_jira_ticket_id
+      env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
       run: |
-        set +e
-        set +o pipefail
-
-        jira_ticket_id=""
-        
-        # Check PR title
-        if [[ ${{ github.event_name }} == 'pull_request' ]]; then
-          jira_ticket_id=$(echo "${{ github.event.pull_request.title }}" | grep -oE '[A-Z]+-[0-9]+')
-        fi
-
-        # Check branch name
-        if [[ -z $jira_ticket_id ]]; then
+          #!/bin/bash
+          set +e
+          set +o pipefail
+          
+          jira_ticket_id=""
+          
+          # Check PR title
+          if [[ $GITHUB_EVENT_NAME == 'pull_request' ]]; then
+          jira_ticket_id=$(echo "$PR_TITLE" | grep -oE '[A-Z]+-[0-9]+')
+          fi
+          
+          # Check branch name
+          if [[ -z $jira_ticket_id ]]; then
           jira_ticket_id=$(echo "${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" | grep -oE '[A-Z]+-[0-9]+')
-        fi
-
-        if [[ -z $jira_ticket_id ]]; then
+          fi
+          
+          if [[ -z $jira_ticket_id ]]; then
           echo "No Jira Ticket ID found"
-        else
+          else
           echo "Jira Ticket ID: $jira_ticket_id"
-          echo "jira_ticket_id=$(echo $jira_ticket_id)" >> $GITHUB_OUTPUT
-        fi
+          echo "jira_ticket_id=$jira_ticket_id" >> "$GITHUB_OUTPUT"
+          fi
       shell: bash
